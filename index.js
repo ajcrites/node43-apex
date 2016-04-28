@@ -1,18 +1,20 @@
 
 // much λ, much UX.
 module.exports = function λ(fn) {
-  return function(e, ctx) {
+  return function(e, ctx, cb) {
     try {
-      var v = fn(e, ctx)
+      var v = fn(e, ctx, cb)
 
+      ctx.callbackWaitsForEmptyEventLoop = false
       if (v && typeof v.then == 'function') {
-        v.then(ctx.succeed).catch(ctx.fail)
+        v.then(val => cb(null, val)).catch(cb)
         return
       }
 
-      ctx.succeed(v)
+      cb(null, v)
     } catch (err) {
-      ctx.fail(err)
+      ctx.callbackWaitsForEmptyEventLoop = false
+      cb(err);
     }
   }
 }

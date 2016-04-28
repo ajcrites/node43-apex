@@ -1,5 +1,14 @@
 
-# Apex Node.js
+# Apex Node.js (For AWS Lambda node 4.3)
+
+This is a separate version of [node-apex](https://github.com/apex/node-apex)
+designed specifically for the AWS Lambda nodejs4.3
+runtime which [recommends using the `callback` parameter
+to complete functions](https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-using-old-runtime.html#transition-to-new-nodejs-runtime)
+
+This can be used in an identical fashion as apex.js for
+the node 0.10 runtime; it's just designed specifically for
+the new runtime.
 
 Node.js module that makes AWS Lambda's user experience a little nicer.
 
@@ -10,7 +19,7 @@ export default λ(e => 'Hello World')
 ## Installation
 
 ```
-$ npm install --save apex.js
+$ npm install --save node43apex.js
 ```
 
 ## Features
@@ -71,6 +80,7 @@ export default async (e, ctx) => {
 ## Contributors
 
 - [TJ Holowaychuk](https://github.com/tj)
+- [Andrew Crites](https://github.com/ajcrites)
 
 ## Badges
 
@@ -81,4 +91,6 @@ export default async (e, ctx) => {
 
 > [tjholowaychuk.com](http://tjholowaychuk.com) &nbsp;&middot;&nbsp;
 > GitHub [@tj](https://github.com/tj) &nbsp;&middot;&nbsp;
+> GitHub [@ajcrites](https://github.com/ajcrites) &nbsp;&middot;&nbsp;
 > Twitter [@tjholowaychuk](https://twitter.com/tjholowaychuk)
+> Twitter [@ExplosionPills](https://twitter.com/ExplosionPills)
