@@ -7,5 +7,5 @@
   "repository": "https://github.com/BIAINC/apex_sentry",
   "dependencies": {
     "raven": "^0.11.0"
-  },
+  }
 }
