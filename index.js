@@ -1,4 +1,4 @@
-import raven from 'raven';
+var raven = require('raven')
 var client = new raven.Client(process.env.SENTRY_DSN, {
   release: `v${process.env.BUILD_VER}`
 })
