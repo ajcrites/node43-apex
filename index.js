@@ -18,6 +18,7 @@ module.exports = function lambda_main(fn) {
       cb(null, v)
     } catch (err) {
       ctx.callbackWaitsForEmptyEventLoop = false
+      console.log(`Error in ${process.env.BUILD_VER}`)
       client.captureException(err)
       cb(err);
     }
