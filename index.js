@@ -1,6 +1,10 @@
+import raven from 'raven';
+var client = new raven.Client(process.env.SENTRY_DSN, {
+  release: `v${process.env.BUILD_VER}`
+})
 
 // much λ, much UX.
-module.exports = function λ(fn) {
+module.exports = function lambda_main(fn) {
   return function(e, ctx, cb) {
     try {
       var v = fn(e, ctx, cb)
@@ -14,6 +18,7 @@ module.exports = function λ(fn) {
       cb(null, v)
     } catch (err) {
       ctx.callbackWaitsForEmptyEventLoop = false
+      client.captureException(err)
       cb(err);
     }
   }

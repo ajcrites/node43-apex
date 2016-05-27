@@ -22,6 +22,11 @@ export default λ(e => 'Hello World')
 $ npm install --save node43apex.js
 ```
 
+## Sentry use
+
+You must have SENTRY_DSN and BUILD_VER defined in the environment, then any exception caught will be reported to your
+Sentry account
+
 ## Features
 
 - return promises
