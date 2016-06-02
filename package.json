@@ -1,7 +1,7 @@
 {
   "name": "exceptional_apex.js",
   "description": "exceptional_apex improves AWS Lambda's UX with promises and exceptional handling and reporting",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "keywords": ["aws", "lambda", "exceptional", "apex"],
   "license": "MIT",
   "repository": "https://github.com/BIAINC/exceptional_apex.js",
