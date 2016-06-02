@@ -13,13 +13,14 @@ the new runtime.
 Node.js module that makes AWS Lambda's user experience a little nicer.
 
 ```js
-export default λ(e => 'Hello World')
+export default lambda_main(e => 'Hello World')
 ```
 
 ## Installation
 
+Add the following to package.json
 ```
-$ npm install --save node43apex.js
+"apex_sentry.js": "github:biainc/exceptional_apex.js"
 ```
 
 ## Sentry use
@@ -40,12 +41,12 @@ shown here.
 
 ```js
 import axios from 'axios'
-import λ from 'apex.js'
+import lambda_main from 'apex.js'
 import 'babel-polyfill'
 
-export default λ(e => {
-  console.log('fetching %d urls', e.urls.length)
-  return Promise.all(e.urls.map(async (url) => {
+export default lambda_main(event => {
+  console.log('fetching %d urls', event.urls.length)
+  return Promise.all(event.urls.map(async (url) => {
     console.log('fetching %s', url)
     return {
       status: (await axios.get(url)).status,
