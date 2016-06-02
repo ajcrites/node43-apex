@@ -4,7 +4,7 @@
   "version": "0.0.2",
   "keywords": ["aws", "lambda", "exceptional", "apex"],
   "license": "MIT",
-  "repository": "https://github.com/BIAINC/exceptional_apex",
+  "repository": "https://github.com/BIAINC/exceptional_apex.js",
   "dependencies": {
     "raven": "^0.11.0"
   }
