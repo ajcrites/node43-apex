@@ -1,7 +1,13 @@
-var raven = require('raven')
-var client = new raven.Client(process.env.SENTRY_DSN, {
-  release: `v${process.env.BUILD_VER}`
+//Test two exception providers
+//*** Sentry
+var sentry = require('raven')
+var sentryClient = new raven.Client(process.env.SENTRY_DSN, {
+  release: `0.0.0.${process.env.BUILD_VER}`
 })
+//*** raygun
+var raygun = require('raygun');
+var raygunClient = new raygun.Client().init({ apiKey: '{{process.env.RAYGUN_APIKEY}}' });
+raygunClient.setVersion(`0.0.0.${process.env.BUILD_VER}`)
 
 // much λ, much UX.
 module.exports = function lambda_main(fn) {
@@ -17,8 +23,9 @@ module.exports = function lambda_main(fn) {
 
       callback(null, v)
     } catch (err) {
-      console.log(`Error in ${process.env.BUILD_VER}`)
-      client.captureException(err)
+      console.error(e.stack)
+      sentryClient.captureException(err)
+      raygunClient.send(err)
       callback(err);
     }
   }
