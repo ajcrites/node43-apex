@@ -1,7 +1,7 @@
 //Test two exception providers
 //*** Sentry
 var sentry = require('raven')
-var sentryClient = new raven.Client(process.env.SENTRY_DSN, {
+var sentryClient = new sentry.Client(process.env.SENTRY_DSN, {
   release: `0.0.0.${process.env.BUILD_VER}`
 })
 //*** raygun
