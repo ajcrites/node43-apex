@@ -5,22 +5,21 @@ var client = new raven.Client(process.env.SENTRY_DSN, {
 
 // much λ, much UX.
 module.exports = function lambda_main(fn) {
-  return function(e, ctx, cb) {
+  return function(event, context, callback) {
     try {
-      var v = fn(e, ctx, cb)
+      var v = fn(event, context, callback)
 
-      ctx.callbackWaitsForEmptyEventLoop = false
+      context.callbackWaitsForEmptyEventLoop = true
       if (v && typeof v.then == 'function') {
-        v.then(val => cb(null, val)).catch(cb)
+        v.then(val => callback(null, val)).catch(callback)
         return
       }
 
-      cb(null, v)
+      callback(null, v)
     } catch (err) {
-      ctx.callbackWaitsForEmptyEventLoop = false
       console.log(`Error in ${process.env.BUILD_VER}`)
       client.captureException(err)
-      cb(err);
+      callback(err);
     }
   }
 }
