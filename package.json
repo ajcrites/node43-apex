@@ -1,7 +1,7 @@
 {
   "name": "node43apex.js",
   "description": "λ improves AWS Lambda's UX with promises for node4.3 runtime",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "keywords": ["aws", "lambda", "λ", "apex"],
   "license": "MIT",
   "repository": "https://github.com/ajcrites/node43-apex"
