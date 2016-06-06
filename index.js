@@ -19,21 +19,27 @@ module.exports = function db_lambda_main(fn) {
   return function(event, context, callback) {
     db_connection.connect()
     try {
-      context.callbackWaitsForEmptyEventLoop = true
-
       var v = fn(event, db_connection, context, callback)
+
       if (v && typeof v.then == 'function') {
-        v.then(val => callback(null, val)).catch(callback)
+        v.then(val => {
+          callback(null, val)
+          db_connection.end()
+        }).catch(err => {
+          console.error(err.stack)
+          sentryClient.captureException(err)
+          callback(err)
+        })
         return
       }
 
+      // This is the non-promise logic, but should be able to remove this branch and do both the same way
       callback(null, v)
+      db_connection.end()
     } catch (err) {
       console.error(err.stack)
       sentryClient.captureException(err)
-      callback(err);
-    } finally {
-      db_connection.end()
+      callback(err)
     }
   }
 }
