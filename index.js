@@ -5,7 +5,6 @@ module.exports = function λ(fn) {
     try {
       var v = fn(e, ctx, cb)
 
-      ctx.callbackWaitsForEmptyEventLoop = false
       if (v && typeof v.then == 'function') {
         v.then(val => cb(null, val)).catch(cb)
         return
@@ -13,7 +12,6 @@ module.exports = function λ(fn) {
 
       cb(null, v)
     } catch (err) {
-      ctx.callbackWaitsForEmptyEventLoop = false
       cb(err);
     }
   }
