@@ -12,6 +12,7 @@
   "repository": "https://github.com/BIAINC/exceptional_apex.js",
   "dependencies": {
     "raven": "^0.11.0",
-    "raygun": "^0.8.5"
+    "raygun": "^0.8.5",
+    "mysql": "^2.10.2"
   }
 }
