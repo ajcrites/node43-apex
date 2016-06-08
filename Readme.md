@@ -41,8 +41,9 @@ shown here.
 
 ```js
 import axios from 'axios'
-import lambda_main from 'apex.js'
 import 'babel-polyfill'
+var lambda_main = require('exceptional_apex.js').lambda_main
+
 
 export default lambda_main(event => {
   console.log('fetching %d urls', event.urls.length)
