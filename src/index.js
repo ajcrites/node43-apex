@@ -1,3 +1,5 @@
+require('babel-polyfill')
+
 import * as sql from './sql'
 import * as sentry from 'raven'
 import { Promise } from 'bluebird'

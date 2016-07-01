@@ -12,6 +12,8 @@
   "repository": "https://github.com/BIAINC/exceptional_apex.js",
   "main": "./dst/index.js",
   "dependencies": {
+    "babel-polyfill": "^6.9.1",
+    "babel-runtime": "^6.9.2",
     "bluebird": "^3.4.1",
     "mysql": "^2.10.2",
     "raven": "^0.11.0",

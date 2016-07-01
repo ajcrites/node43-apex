@@ -45,7 +45,7 @@ import 'babel-polyfill'
 var lambda_main = require('exceptional_apex.js').lambda_main
 
 
-export default lambda_main(event => {
+export default lambda(event => {
   console.log('fetching %d urls', event.urls.length)
   return Promise.all(event.urls.map(async (url) => {
     console.log('fetching %s', url)
@@ -82,6 +82,14 @@ export default async (e, ctx) => {
     ctx.fail(err)
   }
 }
+```
+
+## Contributing
+
+Because NPM doesn't run prepublish a part of git dependencies (https://github.com/npm/npm/issues/3055), before committing, you should run:
+
+```
+npm run build
 ```
 
 ## Contributors
