@@ -1,12 +1,8 @@
 require('babel-polyfill')
 
 import * as sql from './sql'
-import * as sentry from 'raven'
-import { Promise } from 'bluebird'
-
-const sentryClient = new sentry.Client(process.env.SENTRY_DSN, {
-  release: `0.0.0.${process.env.BUILD_VER}`,
-})
+import * as sentry from './sentry'
+import Promise from 'bluebird'
 
 const sqlize = fn => (
   async (event, context, callback) => {
@@ -41,7 +37,9 @@ const sentryize = fn => (
     } catch (err) {
       console.error(err.stack)
       console.log('Sending to Sentry')
-      sentryClient.captureException(err)
+
+      await sentry.captureError(err)
+
       throw err
     } finally {
       console.log('Sentryize done')
