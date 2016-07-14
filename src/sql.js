@@ -1,5 +1,5 @@
-const mysql = require('mysql')
-const Promise = require('bluebird')
+import * as mysql from 'mysql'
+import Promise from 'bluebird'
 Promise.promisifyAll(mysql)
 Promise.promisifyAll(require('mysql/lib/Connection').prototype)
 Promise.promisifyAll(require('mysql/lib/Pool').prototype)
@@ -23,7 +23,7 @@ const getSqlConnection = (pool) => (
   })
 )
 
-module.exports = {
+export {
   createPool,
   getSqlConnection,
 }

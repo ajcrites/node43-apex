@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.captureError = undefined;
 
 var _raven = require('raven');
 
@@ -33,4 +34,5 @@ function captureError(err) {
   });
 }
 
+exports.captureError = captureError;
 exports.default = captureError;

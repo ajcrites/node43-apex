@@ -18,4 +18,8 @@ function captureError(err) {
   })
 }
 
+export {
+  captureError,
+}
+
 export default captureError
