@@ -17,12 +17,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-function captureError(err) {
+function captureError(err, context) {
   return new _bluebird2.default(function (resolve, reject) {
     var sentryClient = new sentry.Client(process.env.SENTRY_DSN, {
-      release: '0.0.0.' + process.env.BUILD_VER
+      release: '0.0.0.' + context.functionVersion
     });
 
+    sentryClient.setExtraContext({ invoke_id: context.invokeid });
     sentryClient.on('logged', resolve);
     sentryClient.on('error', reject);
 

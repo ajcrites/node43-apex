@@ -38,7 +38,7 @@ const sentryize = fn => (
       console.error(err.stack)
       console.log('Sending to Sentry')
 
-      await sentry.captureError(err)
+      await sentry.captureError(err, context)
 
       throw err
     } finally {

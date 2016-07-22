@@ -129,7 +129,7 @@ var sentryize = function sentryize(fn) {
               console.log('Sending to Sentry');
 
               _context3.next = 14;
-              return sentry.captureError(_context3.t0);
+              return sentry.captureError(_context3.t0, context);
 
             case 14:
               throw _context3.t0;
