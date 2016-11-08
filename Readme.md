@@ -1,3 +1,8 @@
+**NOTE: THIS REPO IS NOT MAINTAINED**
+The [original apex.js package](https://npmjs.com/package/apex.js)
+supports Node 4.3 in version 2.
+
+You don't need to use this repository.
 
 # Apex Node.js (For AWS Lambda node 4.3)
 
